@@ -1,0 +1,10 @@
+index:
+  a.netfilterqueue
+
+
+a.netfilterque installation problem (python3) (pip install netfilterqueue)
+---------------------------------------------------------------------------
+fix: 
+  a.sudo apt-get install libnetfilter-queue-dev
+  b.pip install --upgrade pip setuptools
+  c.pip install netfilterqueue
