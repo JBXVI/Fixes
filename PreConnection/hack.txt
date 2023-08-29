@@ -1,0 +1,11 @@
+MAC SPOOF
+--------
+fmt:
+ifconfig [interface] down
+ifconfig [interface] hw ether [new_mac]
+ifconfig [interface] up
+
+eg:
+ifconfig wlan0 down
+ifconfig wlan0 hw ether aa:bb:cc:dd:ee:ff
+ifconfig wlan0 up
